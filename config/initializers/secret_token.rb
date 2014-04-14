@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Fakebook::Application.config.secret_key_base = '3ef82a089a8b8db9a01ac9c8d282a571d73a0e4b44e76a9cb5d5827cdb36f229b9c56d22e96315e077bf51965856e27bedf91c54c874e8c19a46fcada9b49a5e'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Fakebook::Application.config.secret_key_base = secure_token
