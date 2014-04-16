@@ -1,6 +1,7 @@
 Fakebook::Application.routes.draw do
-  get "users/new"
+  resources :users
   root  'static_pages#home'
+  match '/user',    to: 'user#show',            via: 'get'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
