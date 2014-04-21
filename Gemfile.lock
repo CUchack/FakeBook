@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/bmabey/database_cleaner.git
+  revision: 35bd646903fc56af185a9fa9e360c568bb56756e
+  specs:
+    database_cleaner (1.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,6 +57,11 @@ GEM
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.1)
+    cucumber-rails (1.4.0)
+      capybara (>= 1.1.2)
+      cucumber (>= 1.2.0)
+      nokogiri (>= 1.5.0)
+      rails (>= 3.0.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -166,6 +177,8 @@ DEPENDENCIES
   capybara (= 2.1.0)
   coffee-rails (= 4.0.1)
   cucumber
+  cucumber-rails (= 1.4.0)
+  database_cleaner!
   factory_girl_rails (= 4.2.1)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
