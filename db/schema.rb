@@ -14,13 +14,20 @@
 ActiveRecord::Schema.define(version: 20140423055756) do
 
   create_table "users", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
     t.string   "name"
     t.string   "email"
+    t.string   "password"
+    t.string   "password_confirmation"
+    t.string   "interests"
+    t.string   "quotes"
+    t.string   "aboutyourself"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",                 default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

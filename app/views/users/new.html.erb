@@ -6,7 +6,13 @@
     <%= form_for(User.new) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
+      <%= f.label "First Name" %>
+      <%= f.text_field :firstname %>
+
+      <%= f.label "Last Name" %>
+      <%= f.text_field :lastname %>
+
+      <%= f.label "Preferred Display Name" %>
       <%= f.text_field :name %>
 
       <%= f.label :email %>

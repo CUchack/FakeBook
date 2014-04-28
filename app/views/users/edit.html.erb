@@ -6,20 +6,39 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
+      <%= f.label(:firstname, "First Name:") %>
+      <%= f.text_field :firstname %>
+
+      <%= f.label(:lastname, "Last Name") %>
+      <%= f.text_field :lastname %>
+
+      <%= f.label(:name, "Preferred Display Name") %>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label(:email, "Email") %>
       <%= f.text_field :email %>
 
-      <%= f.label :password %>
+      <%= f.label(:password, "Change Password") %>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.label(:password_confirmation, "Confirm Password") %>
       <%= f.password_field :password_confirmation %>
+      
+      <%= f.label(:interests, "Interests") %>
+      <%= f.text_area(:interests, size: "30x10") %>
+      
+      <%= f.label(:quotes, "Favorite Quotes") %>
+      <%= f.text_area(:quotes, size: "30x10") %>
+      
+      <%= f.label(:aboutyourself, "About Yourself") %>
+      <%= f.text_area(:aboutyourself, size: "50x10") %>
+      
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
+    <%= link_to "Cancel", current_user, class: "btn btn-large btn-primary" %> <br/>
+    <br/>
+    <br/>
 
     <%= gravatar_for @user %>
     <a href="http://gravatar.com/emails">change</a>
