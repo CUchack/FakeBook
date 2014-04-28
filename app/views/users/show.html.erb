@@ -1,15 +1,33 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        User Profile for <%= @user.name %>
-        
-      </h1>
-      <h2>
-      	
-      </h2>
-    </section>
-  </aside>
+	<aside class="span4">
+		<section>
+			<h1> <%= gravatar_for @user %>
+			User Profile for <%= @user.name %> </h1>
+		</section>
+		<h2> Email:		<br/>
+
+		<%= @user.email%>
+		
+		<br/>
+		<br/>
+		<br/>
+		Interests:		<br/>
+
+		<%= @user.interests%>
+		<br/>
+		<br/>
+		<br/>
+		Favorite Quotes:		<br/>
+
+		<%= @user.quotes%>
+		<br/>
+		<br/>
+		<br/>
+
+		About <%=@user.name%>:		<br/>
+		<%= @user.aboutyourself%>
+		
+		</h2>
+	</aside>
 </div>
