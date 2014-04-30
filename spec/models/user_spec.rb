@@ -3,12 +3,13 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = User.new(name: "Example User", email: "user@example.com",
+    @user = User.new(firstname: "Example", lastname: "User", name: "Example User", email: "user@example.com",
                      password: "foobar", password_confirmation: "foobar")
   end
 
   subject { @user }
-
+  it { should respond_to(:firstname) }
+  it { should respond_to(:lastname) }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
@@ -17,7 +18,8 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
-
+  it { should respond_to(:microposts) }
+  
   it { should be_valid }
   it { should_not be_admin }
 
@@ -28,6 +30,14 @@ describe User do
     end
 
     it { should be_admin }
+  end
+  describe "when first name is not present" do
+    before { @user.firstname = " " }
+    it { should_not be_valid }
+  end
+  describe "when last name is not present" do
+    before { @user.lastname = " " }
+    it { should_not be_valid }
   end
 
   describe "when name is not present" do
