@@ -1,10 +1,21 @@
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
 <div class="center hero-unit">
   <h1>Welcome to FakeBook</h1>
 
   <h2>
-    This is the home page for FakeBook based of the 
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
+    This is the home page for FakeBook, the best fake social networking site out there!
+   
   </h2>
 
 
@@ -12,4 +23,3 @@
 
 </div>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
