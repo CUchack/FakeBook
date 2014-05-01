@@ -4,6 +4,11 @@
 	<% @microposts = my_feed @user %>
 		<h3>Microposts (<%= @microposts.count %>)</h3>
 		<ol class="microposts">
-			<%= render @microposts %>
+			<% @microposts.each do |micropost| %>
+			  <%= gravatar_for micropost.user, size: 52 %>
+  			  <%= link_to micropost.user.name, micropost.user %>
+
+			<%= render micropost %>
+			<% end %>
 		</ol>
 

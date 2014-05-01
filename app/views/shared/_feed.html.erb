@@ -1,6 +1,10 @@
 <% if @feed_items.any? %>
   <ol class="microposts">
-    <%= render partial: 'shared/feed_item', collection: @feed_items %>
+  	<% @feed_items.each do |feed_item|%>
+  	<%= gravatar_for feed_item.user, size: 52 %>
+	<%= link_to feed_item.user.name, feed_item.user %>
+    <%= render partial: 'shared/feed_item', collection: feed_item %>
+    <% end %>
   </ol>
   <%= will_paginate @feed_items %>
 <% end %>
