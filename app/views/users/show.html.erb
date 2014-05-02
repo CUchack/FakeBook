@@ -3,7 +3,8 @@
 	<aside class="span4">
 		<section>
 			<h1> <%= gravatar_for @user %>
-			User Profile for <%= @user.name %> </h1>
+			User Profile for <%= @user.name %> 
+			</h1>
 		</section>
 		<h2> Email:
 		<br/>
@@ -25,15 +26,25 @@
 		<br/>
 		About <%= @user.name%>:
 		<br/>
-		<%= @user.aboutyourself%> </h2>
+		<%= @user.aboutyourself%> 
+		</h2>
 	</aside>
 	<div class="span8">
-		<% if @user.microposts.any? %>
-		<h3>Microposts (<%= @user.microposts.count %>)</h3>
+
+	<% @microposts = my_feed @user %>
+		<% if @microposts.any?%>
+		<h3>Microposts (<%= @microposts.count %>)</h3>
 		<ol class="microposts">
-			<%= render @microposts %>
-		</ol>
-		<%= will_paginate @microposts %>
+			<% @microposts.each do |micropost| %>
+			  <%= gravatar_for micropost.user, size: 52 %>
+  			  <%= link_to micropost.user.name, micropost.user %>
+
+			<%= render micropost %>
+			<% end %>
 		<% end %>
+			
+		</ol>
+
+
 	</div>
 </div>
