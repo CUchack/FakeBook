@@ -16,7 +16,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
   end
+  
+  def home
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
 
+  end
+  def info
+    @user = User.find(params[:id])
+  end
   def new
     @user = User.new
   end
@@ -41,7 +49,15 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
   end
-
+  
+#  def clearwall
+#    @user = User.find(params[:id])
+#    @microposts = @user.microposts.all
+#    for @microposts.each do |p|
+#      p.destroy
+#    end
+#  end
+  
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)

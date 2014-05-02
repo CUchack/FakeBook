@@ -1,50 +1,53 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-	<aside class="span4">
-		<section>
-			<h1> <%= gravatar_for @user %>
-			User Profile for <%= @user.name %> 
-			</h1>
-		</section>
-		<h2> Email:
-		<br/>
-		<%= @user.email%>
-		<br/>
-		<br/>
-		<br/>
-		Interests:
-		<br/>
-		<%= @user.interests%>
-		<br/>
-		<br/>
-		<br/>
-		Favorite Quotes:
-		<br/>
-		<%= @user.quotes%>
-		<br/>
-		<br/>
-		<br/>
-		About <%= @user.name%>:
-		<br/>
-		<%= @user.aboutyourself%> 
-		</h2>
-	</aside>
-	<div class="span8">
+<div>
+	<div id="globalContainer" class="uiContetualLayerParent">
+		<div>
+			<div id="mainContainer">
+				<div id="leftCol">
+					<aside class="span4">
+						<section>
+							<%= render 'shared/user_info' %>
+						</section>
 
-	<% @microposts = my_feed @user %>
-		<% if @microposts.any?%>
-		<h3>Microposts (<%= @microposts.count %>)</h3>
-		<ol class="microposts">
-			<% @microposts.each do |micropost| %>
-			  <%= gravatar_for micropost.user, size: 52 %>
-  			  <%= link_to micropost.user.name, micropost.user %>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<div>
+							Pending Friend Requests for <%= @user.name%>:
+							<!-- need to get this working with friend stuff-->
+						</div>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<div>
+							Your current friends:
+							<!-- need to get this working with friend stuff-->
+						</div>
+				</div>
 
-			<%= render micropost %>
-			<% end %>
-		<% end %>
-			
-		</ol>
+				</h3></aside>
+				<div id="contentCol" role="main">
+					<!--div class="span8"-->
 
+					<% @microposts = my_feed @user %>
+					<% if @microposts.any?%>
+					<h2><%= @user.name%>'s Wall (<%= @microposts.count %>)</h2>
+					<ol class="microposts">
+						<% @microposts.each do |micropost| %>
+						<%= gravatar_for micropost.user, size: 52 %>
+						<%= link_to micropost.user.name, micropost.user %>
 
+						<%= render micropost %>
+						<% end %>
+						<% end %>
+
+					</ol>
+
+					<!--/div-->
+
+				</div>
+			</div>
+		</div>
 	</div>
-</div>

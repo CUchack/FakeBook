@@ -1,46 +1,82 @@
-<% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<% provide(:title, "Edit user") %> <h1>Update your profile</h1>
+<div id="globalContainer" class="uiContetualLayerParent">
+	<div>
+		<div id="mainContainer">
+			<aside class="span4">
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+				<div class="leftCol">
+					<%= form_for(@user) do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label(:firstname, "First Name:") %>
-      <%= f.text_field :firstname %>
+					Profile Picture:<%= gravatar_for @user %>
+					<a href="http://gravatar.com/emails">change</a>
 
-      <%= f.label(:lastname, "Last Name") %>
-      <%= f.text_field :lastname %>
+					<%= f.label(:firstname, "First Name:") %>
+					<%= f.text_field :firstname %>
 
-      <%= f.label(:name, "Preferred Display Name") %>
-      <%= f.text_field :name %>
+					<%= f.label(:lastname, "Last Name") %>
+					<%= f.text_field :lastname %>
 
-      <%= f.label(:email, "Email") %>
-      <%= f.text_field :email %>
+					<%= f.label(:name, "Preferred Display Name") %>
+					<%= f.text_field :name %>
 
-      <%= f.label(:password, "Change Password") %>
-      <%= f.password_field :password %>
+					<%= f.label(:email, "Email") %>
+					<%= f.text_field :email %>
 
-      <%= f.label(:password_confirmation, "Confirm Password") %>
-      <%= f.password_field :password_confirmation %>
-      
-      <%= f.label(:interests, "Interests") %>
-      <%= f.text_area(:interests, size: "30x10") %>
-      
-      <%= f.label(:quotes, "Favorite Quotes") %>
-      <%= f.text_area(:quotes, size: "30x10") %>
-      
-      <%= f.label(:aboutyourself, "About Yourself") %>
-      <%= f.text_area(:aboutyourself, size: "50x10") %>
-      
+					<%= f.submit "Update Name and Email Preferences"%>
+					<% end %>
 
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    <% end %>
-    <%= link_to "Cancel", current_user, class: "btn btn-large btn-primary" %> <br/>
-    <br/>
-    <br/>
+					<%= form_for(@user) do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
 
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
-  </div>
+					<%= f.label(:password, "Change Password") %>
+					<%= f.password_field :password %>
+
+					<%= f.label(:password_confirmation, "Confirm Password") %>
+					<%= f.password_field :password_confirmation %>
+
+					<%= f.submit "Change Password"%>
+					<% end %>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<div>
+						Pending Friend Requests for <%= @user.name%>:
+						<!-- need to get this working with friend stuff-->
+					</div>
+
+					<br/>
+					<br/>
+					<br/>
+						Search for friends *button*
+					<br/>
+					<br/>
+					<br/>
+					<%= link_to "Cancel", current_user, class: "btn btn-large btn-primary" %>
+
+				</div>
+			</aside>
+			<div id="contentCol" role="main">
+				<%= button_to "Clear Wall", current_user, :method => :delete, :confirm => "Are you sure you want to delete the contents of your wall?"%>
+
+				<%= form_for(@user) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+
+				<%= f.label(:interests, "Interests") %>
+				<%= f.text_area(:interests, size: "30x10") %>
+
+				<%= f.label(:quotes, "Favorite Quotes") %>
+				<%= f.text_area(:quotes, size: "30x10") %>
+
+				<%= f.label(:aboutyourself, "About Yourself") %>
+				<%= f.text_area(:aboutyourself, size: "50x10") %>
+
+				<%= f.submit "Update Personal Info" %>
+				<% end %>
+
+			</div>
+		</div>
+	</div>
 </div>
+
