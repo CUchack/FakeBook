@@ -30,7 +30,7 @@
 				</h3></aside>
 				<div id="contentCol" role="main">
 					<!--div class="span8"-->
-
+				<% if @microposts.any? %>
 					<% @microposts = my_feed @user %>
 					<% if @microposts.any?%>
 					<h2><%= @user.name%>'s Wall (<%= @microposts.count %>)</h2>
@@ -44,7 +44,7 @@
 						<% end %>
 
 					</ol>
-
+				<% end %>
 					<!--/div-->
 
 				</div>
