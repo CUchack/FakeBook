@@ -1,10 +1,36 @@
-<%= link_to gravatar_for(current_user, size: 52), current_user %>
+<%= link_to gravatar_for(@user, size: 68), @user %>
 <h1>
-  <%= current_user.name %>
+  <%= @user.name %>
 </h1>
+<% if @user.name == current_user.name %>
+<% else %>
 <span>
   <%= link_to "view my profile", current_user %>
 </span>
+<% end %>
 <span>
-  <%= pluralize(current_user.microposts.count, "micropost") %>
+  <%= pluralize(@user.microposts.count, "Status Update") %>
 </span>
+<section>
+						<h3> Email:
+						<br/>
+						<%= @user.email%>
+						<br/>
+						<br/>
+						<br/>
+						Interests:
+						<br/>
+						<%= @user.interests%>
+						<br/>
+						<br/>
+						<br/>
+						Favorite Quotes:
+						<br/>
+						<%= @user.quotes%>
+						<br/>
+						<br/>
+						<br/>
+						About <%= @user.name%>:
+						<br/>
+						<%= @user.aboutyourself%>
+</section>

@@ -1,9 +1,36 @@
 <% provide(:title, 'Newsfeed') %>
 
+<div id="globalContainer" class="uiContetualLayerParent">
+	<div>
+		<div id="mainContainer">
+			<div id="contentCol" role="main">
+				<!--div class="span8"-->
+				<ol class="microposts">
+			
+				<% @microposts = my_feed @current_user %>
+				<% if @microposts.any?%>
+				<h2><%= @current_user.name%>'s Newsfeed (<%= @microposts.count %>)</h2>
+					<% @microposts.each do |micropost| %>
+					<%= gravatar_for micropost.user, size: 52 %>
+					<%= link_to micropost.user.name, micropost.user %>
 
-	<% @microposts = my_feed @user %>
-		<h3>Microposts (<%= @microposts.count %>)</h3>
-		<ol class="microposts">
-			<%= render @microposts %>
-		</ol>
+					<%= render micropost %>
+					<% end %>
+					<% end %>
 
+				</ol>
+
+				<% @microposts = my_feed @user %>
+				<h3>Microposts (<%= @microposts.count %>)</h3>
+				<ol class="microposts">
+					<% @microposts.each do |micropost| %>
+					<%= gravatar_for micropost.user, size: 52 %>
+					<%= link_to micropost.user.name, micropost.user %>
+
+					<%= render micropost %>
+					<% end %>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>

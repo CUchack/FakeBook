@@ -1,39 +1,61 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-	<aside class="span4">
-		<section>
-			<h1> <%= gravatar_for @user %>
-			User Profile for <%= @user.name %> </h1>
-		</section>
-		<h2> Email:
-		<br/>
-		<%= @user.email%>
-		<br/>
-		<br/>
-		<br/>
-		Interests:
-		<br/>
-		<%= @user.interests%>
-		<br/>
-		<br/>
-		<br/>
-		Favorite Quotes:
-		<br/>
-		<%= @user.quotes%>
-		<br/>
-		<br/>
-		<br/>
-		About <%= @user.name%>:
-		<br/>
-		<%= @user.aboutyourself%> </h2>
-	</aside>
-	<div class="span8">
-		<% if @user.microposts.any? %>
-		<h3>Microposts (<%= @user.microposts.count %>)</h3>
-		<ol class="microposts">
-			<%= render @microposts %>
-		</ol>
-		<%= will_paginate @microposts %>
-		<% end %>
+<div>
+	<div id="globalContainer" class="uiContetualLayerParent">
+		<div>
+			<div id="mainContainer">
+				<div id="leftCol">
+					<aside class="span4">
+						<section>
+							<%= render 'shared/user_info' %>
+						</section>
+
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<div>
+							Pending Friend Requests for <%= @user.name%>:
+							<!-- need to get this working with friend stuff-->
+						</div>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<div>
+							Your current friends:
+							<!-- need to get this working with friend stuff-->
+						</div>
+				</div>
+
+				</h3></aside>
+				<div id="contentCol" role="main">
+					<!--div class="span8"-->
+					<% if @microposts.any? %>
+					<% @microposts = my_feed @user %>
+					<% if @microposts.any?%>
+					<h2><%= @user.name%>'s Wall (<%= @microposts.count %>)</h2>
+					<ol class="microposts">
+						<% @microposts.each do |micropost| %>
+						<%= gravatar_for micropost.user, size: 52 %>
+						<%= link_to micropost.user.name, micropost.user %>
+
+						<%= render micropost %>
+						<% end %>
+						<% end %>
+
+					</ol>
+					<% end %>
+					<br/>
+					<br/>
+
+					<section>
+						Post something on <%= @user.name%>'s Wall:
+						<!--%= render 'shared/micropost_form' %-->
+					</section>
+
+					<!--/div-->
+
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
