@@ -1,3 +1,6 @@
+#http://keighl.com/post/amistad-friendships-controller/
+#https://github.com/raw1z/amistad/wiki/_pages
+#http://thehungrycoder.com/ruby-on-rails/amistad-facebook-like-friendship-management-in-ror.html
 class FriendshipsController < ApplicationController
 
   before_filter :authenticate_user!
