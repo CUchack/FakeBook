@@ -5,17 +5,31 @@
 			<div id="mainContainer">
 				<div id="leftCol">
 					<aside class="span4">
+						
 						<section>
 							<%= render 'shared/user_info' %>
 						</section>
-
+						
+						<%= render :partial =>'shared/friend_request', :locals => {:user=> @user, :profile =>true} %>
+						<% if @friends or current_user == @user %> 
 						<br/>
 						<br/>
 						<br/>
 						<br/>
 						<div>
+						<% if current_user == @user %>
 							Pending Friend Requests for <%= @user.name%>:
 							<!-- need to get this working with friend stuff-->
+							<ul>
+							<% @user.pending_invited_by.each do |requester| %>
+								<%= render requester %>
+								<br/>
+								<br/>
+								<%= button_to "Accept!", friend_path(requester.id), :method => :patch %>
+            		<%= button_to "Reject!", friend_path(requester.id), :method => :delete %>
+            	<% end %>
+            	</ul>
+						<% end %>
 						</div>
 						<br/>
 						<br/>
@@ -24,14 +38,13 @@
 						<div>
 							Your current friends:
 							<!-- need to get this working with friend stuff-->
-							<ol>
+							<ul>
 								<% @user.friends.each do |friend| %>
-								<%= gravatar_for friend, size: 52 %>
-								<%= link_to friend %>
 								<%= render friend %>
 							<% end %>
-							</ol>
+							</ul>
 						</div>
+						<% end %>
 				</div>
 
 				</h3></aside>

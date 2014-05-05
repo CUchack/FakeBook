@@ -1,10 +1,17 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
-<%= will_paginate %>
 
+   <%= form_tag(users_path, method: "get") do %>
+    <%= label_tag(:user, "Search for:") %>
+	<%= text_field_tag("name") %>
+	<%= submit_tag("Search", :id => "Search")%>
+	<% end %>
+<%= will_paginate %>
 <ul class="users">
-  <%= render @users %>
+ <% @users.each do |user| %>
+  <%= render :partial =>'shared/friend_request', :locals => {:user=> user , :profile =>false} %>
+  <% end %>
 </ul>
 
 <%= will_paginate %>

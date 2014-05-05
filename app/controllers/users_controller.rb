@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page])
+    name =  params[:name]
+    if name != nil
+       @users = User.paginate(page: params[:page]).all( :conditions => ["lastname LIKE ?", "#{name}%"])
+    else
+       @users = User.paginate(page: params[:page])
+    end
   end
   
   def feed
@@ -15,6 +20,7 @@ class UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @friends = current_user.friend_with? @user
   end
   
   def home

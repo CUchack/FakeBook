@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20140504051534) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+=======
+  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+
+>>>>>>> 5e48abc299d795fcbadc970ee4995485e42f9191
   create_table "users", force: true do |t|
     t.string   "firstname"
     t.string   "lastname"
