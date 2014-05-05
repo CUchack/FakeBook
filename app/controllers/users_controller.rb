@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
     @users = @user.followers.paginate(page: params[:page])
+#    render 'shared/micropost_form'
   end
   
   def home

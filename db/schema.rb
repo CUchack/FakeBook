@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20140504205419) do
 
+  create_table "friendships", force: true do |t|
+    t.integer "friendable_id"
+    t.integer "friend_id"
+    t.integer "blocker_id"
+    t.boolean "pending",       default: true
+  end
+
+  add_index "friendships", ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
+
   create_table "microposts", force: true do |t|
     t.string   "content"
     t.integer  "user_id"

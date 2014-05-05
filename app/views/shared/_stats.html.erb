@@ -11,9 +11,9 @@
   <div>
   <a href="<%= followers_user_path(@user) %>">
     <strong id="friends" class="stat">
-      <!--%= @user.friends.count %-->
+      <%= @user.followers.count %> Friends
     </strong>
-    Friends:
+    
   </a>
   </div>
 </div>
