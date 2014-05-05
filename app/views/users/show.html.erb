@@ -16,7 +16,7 @@
 
 						
 						<%= render :partial =>'shared/friend_request', :locals => {:user=> @user, :profile =>true} %>
-							<% if @friends or current_user == @user %> 
+						<% if @friends or current_user == @user %> 
 						<br/>
 						<br/>
 						<br/>
@@ -25,7 +25,16 @@
 						<% if current_user == @user %>
 							Pending Friend Requests for <%= @user.name%>:
 							<!-- need to get this working with friend stuff-->
-							<% end %>
+							<ul>
+							<% @user.pending_invited_by.each do |requester| %>
+								<%= render requester %>
+								<br/>
+								<br/>
+								<%= button_to "Accept!", friend_path(requester.id), :method => :patch %>
+            		<%= button_to "Reject!", friend_path(requester.id), :method => :delete %>
+            	<% end %>
+            	</ul>
+						<% end %>
 						</div>
 
 						<br/>
@@ -46,6 +55,12 @@
 							</section>
 
 							<!-- need to get this working with friend stuff-->
+
+							<ul>
+								<% @user.friends.each do |friend| %>
+								<%= render friend %>
+							<% end %>
+							</ul>
 
 						</div>
 						<% end %>
