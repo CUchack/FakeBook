@@ -8,6 +8,7 @@
 						<section>
 							<%= render 'shared/user_info' %>
 						</section>
+						<%= render :partial =>'shared/friend_request', :locals => {:user=> @user, :profile =>true} %>
 
 						<br/>
 						<br/>
