@@ -196,6 +196,7 @@ aside {
 }
 .content {
   display: block;
+  text-align: center;
 }
 .timestamp {
   color: $grayLight;
@@ -268,7 +269,7 @@ position: relative;
   min-height: 1000px;
   font-size: 12px;
   line-height: 1.28;
-  text-align: center;
+  text-align: left;
   direction: ltr;
   word-wrap: break-word;
   margin-top: 0px;
