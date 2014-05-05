@@ -6,21 +6,23 @@
 			<%= render 'shared/user_info' %>
 		</section>
 		<section>
+			<%= render 'shared/micropost_form' %>
+		</section>
+		<section>
 			<%= @user.firstname %>'s current friends: (<%= @user.friends.count %>)
 			<section>
 				<!--%= render 'shared/stats' %-->
 				<% if @user.friends.any? %>
 				<div class="user_avatars">
 					<% @user.friends.each do |user| %>
-					<%= link_to gravatar_for(user, size: 30), user %>
+					<%= render user %>
 					<% end %>
 				</div>
+				<br/>
+				<br/>
 				<% end %>
 			</section>
 
-		</section>
-		<section>
-			<%= render 'shared/micropost_form' %>
 		</section>
 		<br/>
 		<br/>
