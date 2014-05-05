@@ -5,12 +5,29 @@
 			<div id="mainContainer">
 				<div id="leftCol">
 					<aside class="span4">
+						
 						<section>
 							<%= render 'shared/user_info' %>
 						</section>
+
 						<section>
 							<%= render 'users/follow_form' if signed_in? %>
 						</section>
+
+						
+						<%= render :partial =>'shared/friend_request', :locals => {:user=> @user, :profile =>true} %>
+							<% if @friends or current_user == @user %> 
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						<div>
+						<% if current_user == @user %>
+							Pending Friend Requests for <%= @user.name%>:
+							<!-- need to get this working with friend stuff-->
+							<% end %>
+						</div>
+
 						<br/>
 						<br/>
 						<br/>
@@ -31,6 +48,7 @@
 							<!-- need to get this working with friend stuff-->
 
 						</div>
+						<% end %>
 				</div>
 
 				</h3></aside>

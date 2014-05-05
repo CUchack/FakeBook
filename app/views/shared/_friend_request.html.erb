@@ -1,0 +1,30 @@
+
+
+  <%if !profile  %>
+    <%= link_to gravatar_for(user, size: 30), user %>
+    <%= user.name %> 
+    <% end %> 
+    <br>
+         <% if current_user.id == user.id %>
+            This is you!
+            <br>
+        <% elsif  current_user.friend_with? user  %>
+            Already Friends!
+            <%= button_to "Delete!", friend_path(user.id), :method => :delete %>
+              <br>
+         <% elsif current_user.invited? user %>
+            Friend request sent!
+             <%= button_to "Unsend!", friend_path(user.id), :method => :delete %>
+               <br>
+         <% elsif current_user.invited_by? user %>
+          <br>
+            <%= button_to "Accept!", friend_path(user.id), :method => :patch %>
+            <%= button_to "Reject!", friend_path(user.id), :method => :delete %>
+              <br>
+        <% else %>
+        <%= form_tag(friends_path(), method: "post") do %>
+            <%= hidden_field_tag(:id, "#{user.id}") %>
+        <%= submit_tag("Add #{user.name}")%>
+          <br>
+        <% end %>
+ <% end %>
