@@ -14,16 +14,20 @@
 						<br/>
 						<br/>
 						<div>
-							Pending Friend Requests for <%= @user.name%>:
+							<%= @user.name %>'s current friends:
+							<section>
+								<%= render 'shared/stats' %>
+								<% if @users.any? %>
+								<div class="user_avatars">
+									<% @users.each do |user| %>
+									<%= link_to gravatar_for(user, size: 30), user %>
+									<% end %>
+								</div>
+								<% end %>
+							</section>
+
 							<!-- need to get this working with friend stuff-->
-						</div>
-						<br/>
-						<br/>
-						<br/>
-						<br/>
-						<div>
-							Your current friends:
-							<!-- need to get this working with friend stuff-->
+
 						</div>
 				</div>
 
