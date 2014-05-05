@@ -5,7 +5,7 @@
    <%= form_tag(users_path, method: "get") do %>
     <%= label_tag(:user, "Search for:") %>
 	<%= text_field_tag("name") %>
-	<%= submit_tag("Search", :id => "Search")%>
+	<%= submit_tag("Search", :id => "Search") %>
 	<% end %>
 <%= will_paginate %>
 <ul class="users">
