@@ -6,7 +6,14 @@ Fakebook::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
+
   resources :relationships, only: [:create, :destroy]
+
+  resources :friends, :controller => 'friendships', :except => [:show, :edit] do
+    get "requests", :on => :collection
+    get "invites", :on => :collection
+  end
+
   root  'static_pages#home'
   match '/user',    to: 'user#show',            via: 'get'
   match '/signup',  to: 'users#new',            via: 'get'
