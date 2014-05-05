@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
-
+    @micropost  = current_user.microposts.build
     @users = @user.friends.paginate(page: params[:page])
 #    render 'shared/micropost_form'
 
@@ -118,6 +118,9 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:firstname, :lastname, :name, :email, :password, :password_confirmation, :interests, :quotes, :aboutyourself)
     end
+  def micropost_params
+    params.require(:micropost).permit(:content)
+  end
 
     # Before filters
 
