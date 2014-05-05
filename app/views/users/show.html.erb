@@ -24,6 +24,13 @@
 						<div>
 							Your current friends:
 							<!-- need to get this working with friend stuff-->
+							<ol>
+								<% @user.friends.each do |friend| %>
+								<%= gravatar_for friend, size: 52 %>
+								<%= link_to friend %>
+								<%= render friend %>
+							<% end %>
+							</ol>
 						</div>
 				</div>
 
