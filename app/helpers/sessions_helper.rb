@@ -48,7 +48,7 @@ module SessionsHelper
   
   def my_feed(user)
     @self = user[:id]
-    @friendslist = [@self,2,3,5,1,4,6] #change this to user.friends when friends are implemented
+    @friendslist = user.friends #change this to user.friends when friends are implemented
     @postlist = []
     for friend in @friendslist do
       @post = [Micropost.find_by_user_id(friend)]
