@@ -6,12 +6,12 @@
 			<%= render 'shared/user_info' %>
 		</section>
 		<section>
-			<%= @user.firstname %>'s current friends: (<%= @user.followers.count %>)
+			<%= @user.firstname %>'s current friends: (<%= @user.friends.count %>)
 			<section>
 				<!--%= render 'shared/stats' %-->
-				<% if @users.any? %>
+				<% if @user.friends.any? %>
 				<div class="user_avatars">
-					<% @users.each do |user| %>
+					<% @user.friends.each do |user| %>
 					<%= link_to gravatar_for(user, size: 30), user %>
 					<% end %>
 				</div>
@@ -30,6 +30,16 @@
 			Pending Friend Requests for <%= @user.name%>:
 			<%= render 'users/follow_form' if signed_in? %>
 			<!-- need to get this working with friend stuff-->
+			<ul>
+				<% @user.pending_invited_by.each do |requester| %>
+				<%= render requester %>
+				<br/>
+				<br/>
+				<%= button_to "Accept!", friend_path(requester.id), :method => :patch, class: "btn btn-small btn-primary"%>
+				<%= button_to "Reject!", friend_path(requester.id), :method => :delete, class: "btn btn-small btn-primary" %>
+				<% end %>
+			</ul>
+
 		</div>
 
 	</aside>

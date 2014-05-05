@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
 
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.friends.paginate(page: params[:page])
 #    render 'shared/micropost_form'
 
     @friends = current_user.friend_with? @user
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
   def followers
     @title = "Friends"
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.friends.paginate(page: params[:page])
     render 'show_follow'
   end
   
