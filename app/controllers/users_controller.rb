@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     name =  params[:name]
     if name != nil
        key = "%#{name}%"
-       @users = User.paginate(page: params[:page]).where("firstname LIKE ? or lastname LIKE ? or name LIKE ?", key, key, key)
+       @users = User.paginate(page: params[:page]).where("firstname LIKE ? or lastname LIKE ? or name LIKE ? or email LIKE ?", key, key, key, key)
        #.all( :conditions => ["name LIKE ?", "#{name}%"])
     else
        @users = User.paginate(page: params[:page])
