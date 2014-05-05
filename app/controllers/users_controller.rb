@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @friends = current_user.friend_with? @user
   end
   
   def home
